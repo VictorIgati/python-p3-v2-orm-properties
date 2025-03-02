@@ -218,11 +218,12 @@ class TestEmployee:
         department.save()
         Employee.create_table()
         faker = Faker()
-        employee1 = Employee.create(faker.name(), "Manager", department.id)
+        employee1_name = faker.name()
+        employee1 = Employee.create(employee1_name, "Manager", department.id)
         employee2 = Employee.create(
             faker.name(), "Web Developer", department.id)
 
-        employee = Employee.find_by_name(employee1.name)
+        employee = Employee.find_by_name(employee1_name)
         assert (
             (employee.id, employee.name, employee.job_title, employee.department_id) ==
             (employee1.id, employee1.name,
